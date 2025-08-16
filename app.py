@@ -39,7 +39,7 @@ try:
             print(f"🔑 Trying password: {password}")
 
             driver.get(ICEWARP_URL)
-            wait = WebDriverWait(driver, 10)
+            wait = WebDriverWait(driver, 2)
 
             # STEP 1: email
             email_field = wait.until(EC.presence_of_element_located((By.NAME, "email-address")))
@@ -48,11 +48,12 @@ try:
             email_field.send_keys(Keys.RETURN)
 
             # STEP 2: password
-            password_field = wait.until(EC.presence_of_element_located((By.NAME, "password")))
+            password_field = wait.until(
+                EC.presence_of_element_located((By.XPATH, "//input[@type='password']"))
+            )
             password_field.clear()
             password_field.send_keys(password)
             password_field.send_keys(Keys.RETURN)
-
             # --- CHECK SUCCESS: look for "Search in Emails" element ---
             try:
                 wait.until(
