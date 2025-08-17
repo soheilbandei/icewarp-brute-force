@@ -39,7 +39,7 @@ try:
             print(f"🔑 Trying password: {password}")
 
             driver.get(ICEWARP_URL)
-            wait = WebDriverWait(driver, 2)
+            wait = WebDriverWait(driver, 8)
 
             # STEP 1: email
             email_field = wait.until(EC.presence_of_element_located((By.NAME, "email-address")))
